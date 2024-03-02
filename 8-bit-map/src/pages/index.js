@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 
 import React, { useEffect, useState } from 'react';
 
-import branchData from '&/branches_small.json';
+import branchData from '&/branches.json';
 import atmData from '&/atms.json';
 
 const MapComponentWithNoSSR = dynamic(() => import('@/components/MapComponent'), {
@@ -13,6 +13,7 @@ const MapComponentWithNoSSR = dynamic(() => import('@/components/MapComponent'),
 export default function Home() {
 
   const [branches, setBranches] = useState([]);
+  const [atms, setAtms] = useState([]);
 
   useEffect(() => {
     // Assuming the structure of your JSON and extracting relevant data
@@ -26,6 +27,18 @@ export default function Home() {
     setBranches(branches);
   }, []);
 
+  useEffect(() => {
+    // Assuming the structure of your JSON and extracting relevant data
+    const atms = atmData.data.flatMap(item => item.Brand.flatMap(brand => brand.ATM.map(atm => ({
+      ...atm,
+      coordinates: [
+        parseFloat(atm.Location.PostalAddress.GeoLocation.GeographicCoordinates.Latitude),
+        parseFloat(atm.Location.PostalAddress.GeoLocation.GeographicCoordinates.Longitude),
+      ]
+    }))));
+    setAtms(atms);
+  }, []);
+
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <AppBar position="static">
@@ -36,7 +49,7 @@ export default function Home() {
         </Toolbar>
       </AppBar>
       <Box flex={1} sx={{ position: 'relative', m: 0, p: 0, overflow: 'hidden' }}>
-        <MapComponentWithNoSSR center={[51.505, -0.09]} zoom={13} branches={branches}/>
+        <MapComponentWithNoSSR center={[51.505, -0.09]} zoom={13} branches={branches} atms={atms}/>
         <Box sx={{ position: 'absolute', bottom: 20, left: '25%', transform: 'translateX(-50%)', zIndex: 1000 }}>
           <TextField 
             label="Search"
@@ -48,7 +61,7 @@ export default function Home() {
       <Paper elevation={0} square>
         <Box p={'5px'}>
           <Typography variant="body1" sx={{ textAlign: 'center' }}>
-            © 2024 Simple Layout. All rights reserved.
+            © 2024 8 Bit Map. All rights reserved.
           </Typography>
         </Box>
       </Paper>
