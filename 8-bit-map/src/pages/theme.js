@@ -3,8 +3,12 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#556cd6',
+      main: '#342a7a',
     },
+  },
+  typography: {
+    "fontFamily": `"ArcadeClassic", monospace`,
+    "fontSize": 20,
   },
   components: {
     MuiContainer: {

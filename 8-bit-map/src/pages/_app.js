@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import theme from '@/pages/theme';
 import 'leaflet/dist/leaflet.css';
+import '@/styles/global.css';
 
 export default function MyApp({ Component, pageProps }) {
   return (
