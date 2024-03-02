@@ -1,7 +1,10 @@
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const MapComponent = ({ center, zoom }) => {
+const MapComponent = ({ center, zoom, branches }) => {
+
+  console.log(branches);
+
   return (
     <MapContainer center={center} zoom={zoom} style={{ height: '100vh', width: '100%' }}>
       <TileLayer

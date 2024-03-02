@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "LastUpdated": "2020-01-06T12:26:33Z",
+    "TotalResults": 444,
+    "Agreement": "Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions",
+    "License": "https://www.openbanking.org.uk/open-licence",
+    "TermsOfUse": "https://www.openbanking.org.uk/terms"
+  },
+  "data": [
+    {
+      "Brand": [
+        {
+          "BrandName": "Santander UK PLC",
+          "Branch": [
+            {
+              "Identification": "102",
+              "SequenceNumber": "0",
+              "Name": "Woking 3 PC",
+              "Type": "Physical",
+              "CustomerSegment": [
+                "Business",
+                "Personal",
+                "Premier",
+                "SME"
+              ],
+              "ServiceAndFacility": [
+                "WiFi"
+              ],
+              "Accessibility": [
+                "AutomaticDoors",
+                "InductionLoop",
+                "LevelAccess",
+                "LowerLevelCounter",
+                "WheelchairAccess"
+              ],
+              "Availability": {
+                "StandardAvailability": {
+                  "Day": [
+                    {
+                      "Name": "Monday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "09:30",
+                          "ClosingTime": "17:00"
+                        }
+                      ]
+                    },
+                    {
+                      "Name": "Tuesday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "09:30",
+                          "ClosingTime": "17:00"
+                        }
+                      ]
+                    },
+                    {
+                      "Name": "Wednesday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "09:30",
+                          "ClosingTime": "17:00"
+                        }
+                      ]
+                    },
+                    {
+                      "Name": "Thursday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "09:30",
+                          "ClosingTime": "17:00"
+                        }
+                      ]
+                    },
+                    {
+                      "Name": "Friday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "09:30",
+                          "ClosingTime": "17:00"
+                        }
+                      ]
+                    },
+                    {
+                      "Name": "Saturday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "09:30",
+                          "ClosingTime": "16:00"
+                        }
+                      ]
+                    },
+                    {
+                      "Name": "Sunday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "00:00",
+                          "ClosingTime": "00:00"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "ContactInfo": [
+                {
+                  "ContactType": "Phone",
+                  "ContactContent": "08000284157"
+                }
+              ],
+              "PostalAddress": {
+                "BuildingNumber": "Unit 38",
+                "StreetName": "THE PEACOCKS",
+                "TownName": "Woking",
+                "CountrySubDivision": [
+                  "Surrey"
+                ],
+                "Country": "GB",
+                "PostCode": "GU21 6GD",
+                "GeoLocation": {
+                  "GeographicCoordinates": {
+                    "Latitude": "51.319708",
+                    "Longitude": "-0.560748"
+                  }
+                }
+              }
+            },
+            {
+              "Identification": "111",
+              "SequenceNumber": "0",
+              "Name": "Oxford City",
+              "Type": "Physical",
+              "CustomerSegment": [
+                "Business",
+                "Personal",
+                "Premier",
+                "SME"
+              ],
+              "ServiceAndFacility": [
+                "WiFi"
+              ],
+              "Accessibility": [
+                "AutomaticDoors",
+                "InductionLoop",
+                "LevelAccess",
+                "LowerLevelCounter",
+                "WheelchairAccess"
+              ],
+              "Availability": {
+                "StandardAvailability": {
+                  "Day": [
+                    {
+                      "Name": "Monday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "09:30",
+                          "ClosingTime": "17:00"
+                        }
+                      ]
+                    },
+                    {
+                      "Name": "Tuesday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "09:30",
+                          "ClosingTime": "17:00"
+                        }
+                      ]
+                    },
+                    {
+                      "Name": "Wednesday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "09:30",
+                          "ClosingTime": "17:00"
+                        }
+                      ]
+                    },
+                    {
+                      "Name": "Thursday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "09:30",
+                          "ClosingTime": "17:00"
+                        }
+                      ]
+                    },
+                    {
+                      "Name": "Friday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "09:30",
+                          "ClosingTime": "17:00"
+                        }
+                      ]
+                    },
+                    {
+                      "Name": "Saturday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "09:30",
+                          "ClosingTime": "16:00"
+                        }
+                      ]
+                    },
+                    {
+                      "Name": "Sunday",
+                      "OpeningHours": [
+                        {
+                          "OpeningTime": "00:00",
+                          "ClosingTime": "00:00"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "ContactInfo": [
+                {
+                  "ContactType": "Phone",
+                  "ContactContent": "08000284157"
+                }
+              ],
+              "PostalAddress": {
+                "AddressLine": [
+                  "SANTANDER HOUSE"
+                ],
+                "StreetName": "CARFAX",
+                "TownName": "Oxford",
+                "CountrySubDivision": [
+                  "Oxfordshire"
+                ],
+                "Country": "GB",
+                "PostCode": "OX1 1HB",
+                "GeoLocation": {
+                  "GeographicCoordinates": {
+                    "Latitude": "51.751752",
+                    "Longitude": "-1.25781"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

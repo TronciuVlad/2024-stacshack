@@ -1,13 +1,33 @@
 import { Container, Box, Typography, AppBar, Toolbar, Paper, TextField } from '@mui/material';
 import dynamic from 'next/dynamic';
 
+import React, { useEffect, useState } from 'react';
+
+import branchData from '&/branches_small.json';
+import atmData from '&/atms.json';
+
 const MapComponentWithNoSSR = dynamic(() => import('@/components/MapComponent'), {
   ssr: false,
 });
 
 export default function Home() {
+
+  const [branches, setBranches] = useState([]);
+
+  useEffect(() => {
+    // Assuming the structure of your JSON and extracting relevant data
+    const branches = branchData.data.flatMap(item => item.Brand.flatMap(brand => brand.Branch.map(branch => ({
+      ...branch,
+      coordinates: [
+        parseFloat(branch.PostalAddress.GeoLocation.GeographicCoordinates.Latitude),
+        parseFloat(branch.PostalAddress.GeoLocation.GeographicCoordinates.Longitude),
+      ]
+    }))));
+    setBranches(branches);
+  }, []);
+
   return (
-    <Container maxWidth="100vw">
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div">
@@ -15,21 +35,23 @@ export default function Home() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Box flex={1}
-            sx={{
-              m: 0, // shorthand for margin: 0
-              p: 0, // shorthand for padding: 0
-              overflow: Hidden,
-            }}>
-        <MapComponentWithNoSSR center={[51.505, -0.09]} zoom={13} />
+      <Box flex={1} sx={{ position: 'relative', m: 0, p: 0, overflow: 'hidden' }}>
+        <MapComponentWithNoSSR center={[51.505, -0.09]} zoom={13} branches={branches}/>
+        <Box sx={{ position: 'absolute', bottom: 20, left: '25%', transform: 'translateX(-50%)', zIndex: 1000 }}>
+          <TextField 
+            label="Search"
+            variant="outlined" 
+            sx={{ width: '450%', bgcolor: 'background.paper' }} 
+          />
+        </Box>
       </Box>
       <Paper elevation={0} square>
-        <Box p={'5px'}> {/* Set padding to 0 */}
+        <Box p={'5px'}>
           <Typography variant="body1" sx={{ textAlign: 'center' }}>
             © 2024 Simple Layout. All rights reserved.
           </Typography>
         </Box>
       </Paper>
-    </Container>
+    </Box>
   );
 }
