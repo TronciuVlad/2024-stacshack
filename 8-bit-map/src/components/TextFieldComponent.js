@@ -1,11 +1,17 @@
 import TextField from '@mui/material/TextField';
-import React from 'react';
+import {React, useState} from 'react';
 
 async function fetchApiKey() {
   const response = await fetch('/key.txt');
   const key = await response.text();
   return key.trim();
 }
+
+const fadeOutAnimation = {
+  animationName: 'fadeout',
+  animationDuration: '2s',
+  animationFillMode: 'forwards',
+};
 
 async function callOpenAI(prompt) {
   const key = await fetchApiKey();
@@ -34,6 +40,9 @@ async function callOpenAI(prompt) {
 }
 
 function TextFieldComponent({ changeCenter, changeZoom}) {
+
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleKeyPress = async (e) => {
     if (e.key === 'Enter') {
       const prompt = e.target.value;
@@ -45,23 +54,46 @@ function TextFieldComponent({ changeCenter, changeZoom}) {
       // Extract numbers from the content
       const results = content.match(/-?\d+(\.\d+)?/g).map(Number);
 
-      if (results.length >= 3 && !(results[0] === 0 && results[1] === 0)) {
-        const coords = results.slice(0, 2); // First two numbers for coordinates
-        const zoom = results[2]; // Third number for zoom
-
-        changeCenter(coords);
-        changeZoom(zoom);
+      if (results.length >= 3) {
+        if (results[0] === 0 && results[1] === 0) {
+          // Show error message
+          setErrorMessage('The location is not in the UK');
+          setTimeout(() => setErrorMessage(''), 4000);
+        } else {
+          // Update map
+          const coords = results.slice(0, 2);
+          const zoom = results[2];
+          changeCenter(coords);
+          changeZoom(zoom);
+        }
       }
     }
   };
 
   return (
-    <TextField
-      label="Search"
-      variant="outlined"
-      onKeyDown={handleKeyPress}
-      sx={{ width: '450%', bgcolor: 'background.paper' }}
-    />
+    <div style={{ position: 'relative', maxWidth: '100%' }}>
+      {errorMessage && (
+        <div style={{ 
+          color: 'red',
+          ...fadeOutAnimation,
+          position: 'absolute', 
+          top: '-40px', 
+          left: 0, 
+          right: 0,
+          transition: 'opacity 2s', 
+          opacity: errorMessage ? 1 : 0,
+          width: '400%',
+        }}>
+          {errorMessage}
+        </div>
+      )}
+      <TextField
+        label="Search"
+        variant="outlined"
+        onKeyDown={handleKeyPress}
+        sx={{ width: '400%', bgcolor: 'background.paper' }}
+      />
+    </div>
   );
 }
 
