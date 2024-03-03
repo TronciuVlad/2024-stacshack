@@ -5,13 +5,11 @@ const MapController = ({ changeCenter, changeZoom, center, zoom }) => {
     const map = useMap();
 
     useEffect(() => {
-        map.panTo(center);
+        map.setView(center, zoom);
+        // map.panTo(center);
+        // map.setZoom(zoom);
     }, [center, map]);
 
-    useEffect(() => {
-        map.setZoom(zoom);
-    }, [zoom, map]);
-  
     return null;
 };
 

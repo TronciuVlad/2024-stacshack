@@ -47,6 +47,23 @@ const MapComponent = ({ initCenter, initZoom, branches, atms }) => {
     setZoom(newZoom);
   };
 
+  useEffect(() => {
+    const toggleVisibility = (event) => {
+      if (event.key === '9') {
+        setShowBranches(prev => !prev);
+      } else if (event.key === '0') {
+        setShowAtms(prev => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', toggleVisibility);
+
+    // Cleanup function to remove the event listener
+    return () => {
+      window.removeEventListener('keydown', toggleVisibility);
+    };
+  }, []);
+
   return (
     <>
       <div style={controlStyles}>
@@ -75,7 +92,7 @@ const MapComponent = ({ initCenter, initZoom, branches, atms }) => {
         <MapController changeCenter={changeCenter} changeZoom={changeZoom} center={center} zoom={zoom}></MapController>
       </MapContainer>
       <Box sx={{ position: 'absolute', bottom: 20, left: '25%', transform: 'translateX(-50%)', zIndex: 1000 }}>
-          <TextFieldComponent changeCenter={changeCenter} changeZoom={changeZoom}></TextFieldComponent>
+          <TextFieldComponent changeCenter={changeCenter} changeZoom={changeZoom} setShowAtms={setShowAtms} setShowBranches={setShowBranches}></TextFieldComponent>
       </Box>
     </>
   );
