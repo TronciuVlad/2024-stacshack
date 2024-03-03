@@ -21,15 +21,6 @@ const atmIcon = new L.Icon({
   iconAnchor: [25 - 10, 25],
 });
 
-const MapCenterController = ({ center }) => {
-  const map = useMap(); // Use the useMap hook to access the Leaflet map instance
-  useEffect(() => {
-    map.setView(center); // Set the map's center whenever the center prop changes
-  }, [center, map]);
-
-  return null; // This component does not render anything itself
-};
-
 const MapComponent = ({ initCenter, initZoom, branches, atms }) => {
   const [showAtms, setShowAtms] = useState(true);
   const [showBranches, setShowBranches] = useState(true);
@@ -53,13 +44,8 @@ const MapComponent = ({ initCenter, initZoom, branches, atms }) => {
   };
 
   const changeZoom = (newZoom) => {
-    setCenter(newZoom);
+    setZoom(newZoom);
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => changeCenter([51.505, -0.09]), 5000);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <>

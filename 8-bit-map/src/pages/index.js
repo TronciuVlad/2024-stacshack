@@ -49,7 +49,7 @@ export default function Home() {
         </Toolbar>
       </AppBar>
       <Box flex={1} sx={{ position: 'relative', m: 0, p: 0, overflow: 'hidden' }}>
-        <MapComponentWithNoSSR initCenter={[56.4620, -2.9707]} initZoom={13} branches={branches} atms={atms}/>
+        <MapComponentWithNoSSR initCenter={[56.4620, -2.9707]} initZoom={20} branches={branches} atms={atms}/>
       </Box>
       <Paper elevation={0} square>
         <Box p={'5px'}>
