@@ -1,6 +1,10 @@
 import { MapContainer, TileLayer, useMap, Marker } from 'react-leaflet';
-import React, { useState } from 'react';
+import { Container, Box, Typography, AppBar, Toolbar, Paper, TextField } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import MapController from '@/components/MapController';
 import '@/styles/MapComponent.module.css';
+
+import TextFieldComponent from '@/components/TextFieldComponent';
 
 import L from 'leaflet';
 
@@ -17,9 +21,22 @@ const atmIcon = new L.Icon({
   iconAnchor: [25 - 10, 25],
 });
 
-const MapComponent = ({ center, zoom, branches, atms }) => {
+const MapCenterController = ({ center }) => {
+  const map = useMap(); // Use the useMap hook to access the Leaflet map instance
+  useEffect(() => {
+    map.setView(center); // Set the map's center whenever the center prop changes
+  }, [center, map]);
+
+  return null; // This component does not render anything itself
+};
+
+const MapComponent = ({ initCenter, initZoom, branches, atms }) => {
   const [showAtms, setShowAtms] = useState(true);
   const [showBranches, setShowBranches] = useState(true);
+  const [center, setCenter] = useState(initCenter);
+  const [zoom, setZoom] = useState(initZoom);
+
+  console.log(initCenter);
 
   const controlStyles = {
     position: 'absolute',
@@ -30,6 +47,19 @@ const MapComponent = ({ center, zoom, branches, atms }) => {
     padding: '5px',
     borderRadius: '5px' // Optional: for styled corners
   };
+
+  const changeCenter = (newCenter) => {
+    setCenter(newCenter);
+  };
+
+  const changeZoom = (newZoom) => {
+    setCenter(newZoom);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => changeCenter([51.505, -0.09]), 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
@@ -56,7 +86,11 @@ const MapComponent = ({ center, zoom, branches, atms }) => {
         {showAtms && atms.map((atm, index) => (
           <Marker key={index} position={atm.coordinates} icon={atmIcon} />
         ))}
+        <MapController changeCenter={changeCenter} changeZoom={changeZoom} center={center} zoom={zoom}></MapController>
       </MapContainer>
+      <Box sx={{ position: 'absolute', bottom: 20, left: '25%', transform: 'translateX(-50%)', zIndex: 1000 }}>
+          <TextFieldComponent changeCenter={changeCenter} changeZoom={changeZoom}></TextFieldComponent>
+      </Box>
     </>
   );
 };

@@ -49,14 +49,7 @@ export default function Home() {
         </Toolbar>
       </AppBar>
       <Box flex={1} sx={{ position: 'relative', m: 0, p: 0, overflow: 'hidden' }}>
-        <MapComponentWithNoSSR center={[51.505, -0.09]} zoom={13} branches={branches} atms={atms}/>
-        <Box sx={{ position: 'absolute', bottom: 20, left: '25%', transform: 'translateX(-50%)', zIndex: 1000 }}>
-          <TextField 
-            label="Search"
-            variant="outlined" 
-            sx={{ width: '450%', bgcolor: 'background.paper' }} 
-          />
-        </Box>
+        <MapComponentWithNoSSR initCenter={[56.4620, -2.9707]} initZoom={13} branches={branches} atms={atms}/>
       </Box>
       <Paper elevation={0} square>
         <Box p={'5px'}>
